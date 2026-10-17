@@ -17,7 +17,7 @@ Install [Git](https://git-scm.com/downloads) and [Nodejs](https://nodejs.org/en/
 ## Getting started
 0. Open the terminal
 1. Clone this repo:<br>
-`git clone https://github.com/sukunnari/custom-bingo-maker.git `
+`git clone https://github.com/sukunnari/custom-bingo-maker.git`
 2. Go to the newly created folder:<br>
 `cd custom-bingo-maker`
 3. Install the dependencies:<br>
