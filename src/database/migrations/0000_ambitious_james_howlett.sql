@@ -28,14 +28,8 @@ CREATE TABLE `players` (
 	`token` text NOT NULL
 );
 --> statement-breakpoint
-PRAGMA foreign_keys=OFF;--> statement-breakpoint
-CREATE TABLE `__new_rooms` (
+CREATE TABLE `rooms` (
 	`room_id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`last_bingo_update` integer NOT NULL
 );
---> statement-breakpoint
-INSERT INTO `__new_rooms`("room_id", "name", "last_bingo_update") SELECT "room_id", "name", "last_bingo_update" FROM `rooms`;--> statement-breakpoint
-DROP TABLE `rooms`;--> statement-breakpoint
-ALTER TABLE `__new_rooms` RENAME TO `rooms`;--> statement-breakpoint
-PRAGMA foreign_keys=ON;
