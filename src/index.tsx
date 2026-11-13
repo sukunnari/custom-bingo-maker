@@ -1,6 +1,7 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { jsxRenderer } from "hono/jsx-renderer";
+import { serveStatic } from "@hono/node-server/serve-static";
 
 import { convertNumber } from "./utils/convert.js";
 import { db } from "./database/db.js";
@@ -8,6 +9,7 @@ import { rooms } from "./database/schema.js";
 
 const PORT: number = convertNumber(process.env.SERVER_PORT);
 const BASE_PATH: string = process.env.BASE_PATH || "/";
+const STATIC_PATH = BASE_PATH + "static/";
 
 const app = new Hono().basePath(BASE_PATH);
 
@@ -29,9 +31,19 @@ app.get("/", async (c) => {
 				<h1>Hello</h1>
 				<p>This is a</p>
 			</body>
+			<link rel="stylesheet" href={STATIC_PATH + "global.css?v=1"} />
+			<script src={STATIC_PATH + "main.js?v=1"}></script>
 		</html>,
 	);
 });
+
+app.use(
+	"/static/*",
+	serveStatic({
+		root: "./",
+		rewriteRequestPath: (path) => path.replace(BASE_PATH, ""),
+	}),
+);
 
 serve(
 	{
