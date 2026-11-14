@@ -1,7 +1,7 @@
 import { sqliteTable } from "drizzle-orm/sqlite-core";
 import { int, text } from "drizzle-orm/sqlite-core";
 
-export const csrf_login_token = sqliteTable("csrf_login_token", {
+export const valid_tokens = sqliteTable("valid_tokens", {
 	token: text().notNull(),
 	expiry: int({ mode: "timestamp" }).notNull(),
 });
