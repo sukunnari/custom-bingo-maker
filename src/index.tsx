@@ -32,7 +32,8 @@ app.get("/", async (c) => {
 				<p>This is a</p>
 			</body>
 			<link rel="stylesheet" href={STATIC_PATH + "global.css?v=1"} />
-			<script src={STATIC_PATH + "main.js?v=1"}></script>
+			<script src={STATIC_PATH + "storage-check.js?v=1"}></script>
+			<script src={STATIC_PATH + "main.js?v=2"}></script>
 		</html>,
 	);
 });
