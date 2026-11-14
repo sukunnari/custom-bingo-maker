@@ -3,13 +3,13 @@ import { int, text } from "drizzle-orm/sqlite-core";
 
 export const valid_tokens = sqliteTable("valid_tokens", {
 	token: text().notNull(),
-	expiry: int({ mode: "timestamp" }).notNull(),
+	expiry: int({ mode: "timestamp_ms" }).notNull(),
 });
 
 export const rooms = sqliteTable("rooms", {
 	room_id: text().notNull().primaryKey(),
 	name: text().notNull(),
-	last_bingo_update: int({ mode: "timestamp" }).notNull(),
+	last_bingo_update: int({ mode: "timestamp_ms" }).notNull(),
 });
 
 export const bingos = sqliteTable("bingos", {
@@ -37,5 +37,5 @@ export const player_selection = sqliteTable("player_selection", {
 		.references(() => rooms.room_id),
 	selection: text({ mode: "json" }).notNull(),
 	win_condition: text({ mode: "json" }).notNull(),
-	last_update: int({ mode: "timestamp" }).notNull(),
+	last_update: int({ mode: "timestamp_ms" }).notNull(),
 });
