@@ -2,10 +2,13 @@ import { db } from "../database/db.js";
 import { and, eq, gt } from "drizzle-orm";
 import { valid_tokens } from "../database/schema.js";
 
-async function generateToken(): Promise<string> {
+async function generateToken(): Promise<{
+	token: string;
+	maxAge: number;
+}> {
 	const randomUUID = crypto.randomUUID();
 
-	const maxAge = 30 * 60;
+	const maxAge = 5 * 60;
 	const now = new Date();
 
 	await db.insert(valid_tokens).values({
@@ -13,7 +16,10 @@ async function generateToken(): Promise<string> {
 		expiry: new Date(now.getTime() + maxAge * 1000),
 	});
 
-	return randomUUID;
+	return {
+		token: randomUUID,
+		maxAge: maxAge,
+	};
 }
 
 async function checkToken(token: string): Promise<boolean> {
