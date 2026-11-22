@@ -1,1 +1,0 @@
-ALTER TABLE `csrf_login_token` RENAME TO `valid_tokens`;

@@ -1,1 +1,0 @@
-ALTER TABLE `players` RENAME COLUMN "token" TO "password";
