@@ -2,7 +2,7 @@ import { db } from "../database/db.js";
 import { and, eq, gt } from "drizzle-orm";
 import { valid_tokens } from "../database/schema.js";
 
-async function generateToken(): Promise<{
+async function generate(): Promise<{
 	token: string;
 	maxAge: number;
 }> {
@@ -22,7 +22,7 @@ async function generateToken(): Promise<{
 	};
 }
 
-async function checkToken(token: string): Promise<boolean> {
+async function check(token: string): Promise<boolean> {
 	if (!token) {
 		return false;
 	}
@@ -40,8 +40,8 @@ async function checkToken(token: string): Promise<boolean> {
 	return true;
 }
 
-async function revokeToken(token: string): Promise<void> {
+async function revoke(token: string): Promise<void> {
 	await db.delete(valid_tokens).where(eq(valid_tokens.token, token));
 }
 
-export { generateToken, checkToken, revokeToken };
+export { generate, check, revoke };
