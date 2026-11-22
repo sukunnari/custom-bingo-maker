@@ -24,7 +24,7 @@ export const bingos = sqliteTable("bingos", {
 export const players = sqliteTable("players", {
 	player_id: text().notNull().primaryKey(),
 	name: text().notNull(),
-	token: text().notNull(),
+	password: text().notNull(),
 });
 
 export const player_selection = sqliteTable("player_selection", {
