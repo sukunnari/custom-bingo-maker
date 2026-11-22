@@ -39,3 +39,11 @@ export const player_selection = sqliteTable("player_selection", {
 	win_condition: text({ mode: "json" }).notNull(),
 	last_update: int({ mode: "timestamp_ms" }).notNull(),
 });
+
+export const player_sessions = sqliteTable("player_sessions", {
+	session_token: text().notNull(),
+	player_username: text()
+		.notNull()
+		.references(() => players.username),
+	expiry: int({ mode: "timestamp_ms" }).notNull(),
+});
