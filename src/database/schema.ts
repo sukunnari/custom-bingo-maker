@@ -22,16 +22,16 @@ export const bingos = sqliteTable("bingos", {
 });
 
 export const players = sqliteTable("players", {
-	player_id: text().notNull().primaryKey(),
-	name: text().notNull(),
+	username: text().notNull().primaryKey(),
+	displayname: text().notNull(),
 	password: text().notNull(),
 });
 
 export const player_selection = sqliteTable("player_selection", {
 	selection_id: text().notNull().primaryKey(),
-	player_id: text()
+	player_username: text()
 		.notNull()
-		.references(() => players.player_id),
+		.references(() => players.username),
 	room_id: text()
 		.notNull()
 		.references(() => rooms.room_id),
